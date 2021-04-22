@@ -1,6 +1,191 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper.12pt]{article}
 \usepackage[brazil]{babel}
-\begin{document}
-\chapter{Replicação do Estudo Nos Cinco Algoritmos de Ordenação }
-\end{document}
+\usepackage[alf]{abntex2cite}
+\usepackage[utf8]{inputenc}
+\usepackage[lmargin=3cm,tmargin=3cm,rmargin=2cm,bmargin=2cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,dsfont,mathtools,blindtext}
+\usepackage{float}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{hyperref}
 
+\title{Replicação do Estudo Nos Cinco Algoritmos de Ordenação}
+\author{Anna Laura, Renan Cleyson, Vinicius Levi}
+\date{Abril 2021}
+
+\begin{document}
+\maketitle
+\newpage
+\section{Introdução}
+O trabalho realizado tem como objetivo replicar os métodos utilizados no artigo ''Experimental Study on the Five Sort Algorithms'', indicando quais os métodos mais velozes e os ideais para cada caso. A replicação foi feita em Java. Os resultados obtidos com a realização dos testes serão mostrados, a fim de replicar e comprovar os resultados apresentados no artigo.
+ 
+ 
+\section {Materiais e métodos}
+Apesar do presente artigo utilizar Java, o artigo original utiliza da linguagem C para executar os algoritmos, avaliando a performance em tempo das seguintes entradas: números aleatórios no raio de 2000 a 128000, 1000 a 10000 apenas com números positivos e entre 1000 a 10000 com números positivos e negativos. Neste artigo, será utilizado de uma entrada gerada por números aleatórios com 25000, 50000, 75000 e 100000 elementos.\\
+O artigo original utiliza de um computador desktop com hardware o seguinte: AMD Sempron Dual Core Processor 2100, 1.81GHz, 2.87GB RAM, Windows XP operating system. O experimento atual apresenta um hardware mais moderno com: Processador Ryzen 2600, Placa de vídeo VEGA 56 8 GB e Memória RAM 16 GB.\\
+Os codigos estarão disponiveis no Github \href{https://github.com/annii202/miniArtigoIPI}{https://github.com/annii202/miniArtigoIPI}.
+\section {Resultados}
+
+\subsection{Resultados encontrados no artigo}
+
+
+No artigo, foram estudados 5 métodos de ordenação diferentes, o Bubblesort, Selectionsort, Insersionsort, Mergesort e o Quicksort. Através desse estudo pode-se perceber quais são os melhores métodos para cada situação. Sendo assim, pode-se afirmar que quando o vetor é menor, os métodos mais eficientes são: insersion sort ou selection sort. Quando o vetor está mais próximo de organizado, o insersion sort ou o bubble sort são mais eficientes. Por fim, nos vetores grandes são os metódos Quicksort e Mergesort mais eficazes.
+
+
+\subsection{Resultados encontrados pelo grupo}
+
+
+Assim como no artigo, o grupo obteve variações nos gráficos de maneira semelhante ao artigo.
+
+
+\subsubsection{Bubblesort}
+No Bubblesort quando os valores são colocados na lista são em ordem crescente,é encontrado o melhor caso. O tempo varia de 0.07 à 1.08 segundos. Em seu pior caso em que a lista se encontra em estado aleatório o tempo varia de 0.91 à 18.71. Considerado o pior em comparação aos outros algoritmos.
+\begin{table}[!ht]
+\centering
+\caption{Complexidade e movimentação do Bubblesort}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Casos & Comparações & Movimentações & Complexidade\\
+\hline
+Pior Caso & $\frac{n(n-1)}{2}$ & $3\times\frac{n(n-1)}{2}$ & $\theta(n^2)$\\
+\hline
+Melhor Caso & $\frac{n(n-1)}{2}$ & não ocorre movimentação & $ \Omega(n)$\\
+\hline 
+Caso médio & $\frac{n(n-1)}{2}$ & $3\times\frac{n(n-1)}{2}$ & $ O(n^2)$\\
+\hline
+\end{tabular}
+\label{tab01}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=3cm]{Bubblesort_time.png}
+    \caption{Tempo de compilação Bubblesort}
+    \label{fig:02}
+\end{figure}
+
+\subsubsection{Selectionsort}
+O algoritmo de ordenação por seleção apresenta uma pesquisa o menor valor e o coloca no inicio da sequencia de dados, criando uma partição ordenada e outra desordenada. Ele se apresenta como um dos algoritmos de ordenação mais lentos, demorando entre 0.059 segundos a 0.85 com dados ordenados crescentemente, do qual é seu melhor caso de uso.\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=3cm]{selectionsort_time.png}
+    \caption{Tempo de compilação Selection sort}
+    \label{fig02}
+\end{figure}
+
+\begin{table}[!ht]
+\centering 
+\caption{Complexidade e movimentação do Selection sort}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Casos & Comparações & Movimentações & Complexidade\\
+\hline
+Pior Caso & $3(n - 1)$ & $\frac{n^2}{2} - \frac{n}{2}$ & $\theta(n^2)$\\
+\hline
+Melhor Caso & $3(n - 1)$ & $\frac{n^2}{2} - \frac{n}{2}$ & $ \Omega(n^2)$\\
+\hline 
+Caso médio & não é possível definir & não é possível definir & $ O(n^2)$\\
+\hline
+\end{tabular}
+\label{tab05}
+\end{table}
+
+\subsubsection{Insertionsort} 
+
+
+ Levando em conta seu pior caso o número de movimentações pode ser considerado o menor. Sua complexidade é a mesma do bubblesort em todos os casos. \\
+Em relação ao tempo, seu pior caso o tempo varia de 0.095 à 1.419, sendo consideravelmente elevado, porém não o pior. Enquanto em seu melhor caso ele atinge o 0.05 segundos sendo um dos melhores. \\
+
+
+\begin{table}[!ht]
+\centering 
+\caption{Complexidade e movimentação do Insert sort}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Casos & Comparações & Movimentações & Complexidade\\
+\hline
+Pior Caso & $\frac{n(n-1)}{2}$ & $ 2(n-1)$ & $\theta(n^2)$\\
+\hline
+Melhor Caso & $(n-1)$ & $\frac{n(n+1)-2}{2}$ & $ \Omega(n)$\\
+\hline 
+Caso médio & não é possível definir & não é possível definir & $ O(n^2)$\\
+\hline
+\end{tabular}
+\label{tab02}
+\end{table}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=3cm]{Insertsort_time.png}
+    \caption{Tempo de compilação Insert sort}
+    \label{fig01}
+\end{figure}
+
+
+\subsubsection{Mergesort}
+
+
+\begin{table}[!ht]
+\centering
+\caption{Complexidade e movimentação do Bubblesort}
+\begin{tabular}{|l|l|c|l|}
+\hline
+Casos & Comparações & Movimentações & Complexidade\\
+\hline
+Pior Caso & $O(n \log{n})$ & - & $\theta(n\log{n})i$\\
+\hline
+Melhor Caso & $O(n \log{n})$ & - & $\Omega(n\log{n})$\\
+\hline 
+Caso médio & $O(n \log{n})$ & - & $O(n\log{n})$\\
+\hline
+\end{tabular}
+\label{tab03}
+\end{table}
+
+
+O Mergesort divide os vetores em subvetores que serão fundidos diversas vezes para obter a ordenação do vetor principal. Observando o comportamento do Mergesort, pode-se perceber que esse método apresenta pouca variação ao alterar a ordenação dos elementos (aleatório, crescente ou decrescente). Com isso, o Mergesort é um método que lida muito bem com grandes vetores, sejam eles mais ou menos ordenados.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=3cm]{mergesort_time.png}
+    \caption{Tempo de compilação Merge sort}
+    \label{figMerge}
+\end{figure}
+
+
+\subsubsection{Quicksort}
+O quicksort é considerado um dos metodos mais rapido, utilizando um elemento como pivo e particionando a lista entre elementos menores e maiores que o pivo. Seu pior caso é quando os dados se apresentam ordenados decrescentemente, no qual demora 0.029 segundos para ordenar.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=3cm]{quicksort_time.png}
+    \caption{Tempo de compilação Quick sort}
+    \label{figMerge}
+\end{figure}
+
+\begin{table}[!ht]
+\centering
+\caption{Complexidade e movimentação do Quicksort}
+\begin{tabular}{|l|l|c|l|}
+\hline
+Casos & Comparações & Movimentações & Complexidade\\
+\hline
+Pior Caso & $O(n \log{n})$ & - & $\theta(n\log{n})i$\\
+\hline
+Melhor Caso & $O(n \log{n})$ & - & $\Omega(n\log{n})$\\
+\hline 
+Caso médio & $O(n \log{n})$ & - & $O(n\log{n})$\\
+\hline
+\end{tabular}
+\label{tab03}
+\end{table}
+\section {Conclusão}
+Entre os algoritmos apresentados o Mergesort e o Quicksort são os que possuem o menor tempo para compilação, quando se tem entradas grandes. O insert sort e o select sort vecem quando as entradas são muito pequenas, tendo poucos movimentos e menor tempo de compilação. Por fim, o bubblesort se destaca no quesito complexidade. Resumindo, não  existe o melhor algoritmo, mas sim o que deve ser utilizado dependendo da situação.
+
+\cite{yang11}
+\bibliography{references.bib}
+
+\end{document}
